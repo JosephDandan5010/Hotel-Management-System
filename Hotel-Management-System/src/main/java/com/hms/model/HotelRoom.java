@@ -4,14 +4,14 @@ package com.hms.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "hotel")
-public class Hotel {
+@Table(name = "hotelRoom")
+public class HotelRoom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long hotelId;
+    private long hotelRoomId;
 
-    @Column(name = "hotel_name", nullable = false, length = 50)
-    private String hotelName;
+//    @Column(name = "hotel_name", nullable = false, length = 50)
+//    private String hotelName;
 
     @Column(name = "building", nullable = false, length = 1)
     private String building;
@@ -32,20 +32,20 @@ public class Hotel {
     private String roomType;
 
     public long getHotelId() {
-        return hotelId;
+        return hotelRoomId;
     }
 
-    public void setHotelId(long hotelId) {
-        this.hotelId = hotelId;
+    public void setHotelId(long hotelRoomId) {
+        this.hotelRoomId = hotelRoomId;
     }
 
-    public String getHotelName() {
-        return hotelName;
-    }
-
-    public void setHotelName(String hotelName) {
-        this.hotelName = hotelName;
-    }
+//    public String getHotelName() {
+//        return hotelName;
+//    }
+//
+//    public void setHotelName(String hotelName) {
+//        this.hotelName = hotelName;
+//    }
 
     public String getBuilding() {
         return building;

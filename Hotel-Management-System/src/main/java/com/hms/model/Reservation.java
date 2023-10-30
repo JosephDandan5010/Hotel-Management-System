@@ -24,7 +24,7 @@ public class Reservation {
     @Column(name = "drivers_license", length = 20, nullable = false)
     private String driversLicense;
 
-    @ManyToOne Hotel hotel;
+    @ManyToOne HotelRoom hotelRoom;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "room_status", nullable = false)
@@ -78,12 +78,12 @@ public class Reservation {
         this.driversLicense = driversLicense;
     }
 
-    public Hotel getHotel() {
-        return hotel;
+    public HotelRoom getHotel() {
+        return hotelRoom;
     }
 
-    public void setHotel(Hotel hotel) {
-        this.hotel = hotel;
+    public void setHotel(HotelRoom hotel) {
+        this.hotelRoom = hotel;
     }
 
     public RoomStatus getRoomStatus() {
