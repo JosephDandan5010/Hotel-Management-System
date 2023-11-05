@@ -10,13 +10,10 @@ public class HotelRoom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long hotelRoomId;
 
-//    @Column(name = "hotel_name", nullable = false, length = 50)
-//    private String hotelName;
-
     @Column(name = "building", nullable = false, length = 1)
     private String building;
 
-    @Column(name = "room_number", nullable = false)
+    @Column(name = "room_number", nullable = false, length = 4)
     private String roomNumber;
 
     @Column(name = "bed_count", nullable = false)
@@ -28,24 +25,19 @@ public class HotelRoom {
     @Column(name = "security_deposit_amount", nullable = false)
     private double securityDepositAmount;
 
-    @Column(name = "room_type", nullable = false, length = 50)
+    @Column(name = "room_type", nullable = false, length = 30)
     private String roomType;
 
-    public long getHotelId() {
+    @Column(name = "room_description", length = 150)
+    private String room_description;
+
+    public long getHotelRoomId() {
         return hotelRoomId;
     }
 
-    public void setHotelId(long hotelRoomId) {
+    public void setHotelRoomId(long hotelRoomId) {
         this.hotelRoomId = hotelRoomId;
     }
-
-//    public String getHotelName() {
-//        return hotelName;
-//    }
-//
-//    public void setHotelName(String hotelName) {
-//        this.hotelName = hotelName;
-//    }
 
     public String getBuilding() {
         return building;
@@ -93,5 +85,13 @@ public class HotelRoom {
 
     public void setRoomType(String roomType) {
         this.roomType = roomType;
+    }
+
+    public String getRoom_description() {
+        return room_description;
+    }
+
+    public void setRoomDescription(String room_description) {
+        this.room_description = room_description;
     }
 }

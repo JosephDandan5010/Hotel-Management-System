@@ -3,9 +3,12 @@ package com.hms.service;
 import com.hms.model.HotelRoom;
 import com.hms.repository.HotelRoomRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,15 +21,16 @@ public class HotelRoomService {
         this.hotelRoomRepository = hotelRoomRepository;
     }
 
-//    public List<Hotel> getAllHotelRooms() {
+//    public List<HotelRoom> getAllHotelRooms() {
 //
-////        List<Hotel> hotelRoomList = new ArrayList<>();
-////        hotelRepository.findAll().forEach(hotelRoom -> hotelRoomList.add(hotelRoom));
+//        List<HotelRoom> hotelRoomList = new ArrayList<>();
+//        hotelRoomRepository.findAll().forEach(hotelRoom -> hotelRoomList.add(hotelRoom));
 //        return hotelRoomRepository.findAll();
 //    }
 
     //creates and saves a new HotelRoom instance to the database.
-    public HotelRoom createHotelRoom(String building, String roomNumber, int bedCount, int bathrooms, Double securityDepositAmount, String roomType) {
+    @Transactional
+    public HotelRoom createHotelRoom(String building, String roomNumber, int bedCount, int bathrooms, Double securityDepositAmount, String roomType, String roomDescription) {
         HotelRoom newRoom = new HotelRoom();
         newRoom.setBuilding(building);
         newRoom.setRoomNumber(roomNumber);
@@ -34,12 +38,15 @@ public class HotelRoomService {
         newRoom.setBathrooms(bathrooms);
         newRoom.setSecurityDepositAmount(securityDepositAmount);
         newRoom.setRoomType(roomType);
+        newRoom.setRoomDescription(roomDescription);
 
+        System.out.println("THIS IS THE CREATE METHOD IN SERVICE");
         //saves the newRoom record and returns the newly saved instance to the hotelRoomRepository
         return hotelRoomRepository.save(newRoom);
     }
 
     //updates an existing HotelRoom instance based on the hotelRoomId
+    @Transactional
     public HotelRoom updateHotelRoom(long hotelRoomId, HotelRoom updatedRoom) {
         //retrieves the existing hotel from the database by its unique hotelRoomId
         Optional<HotelRoom> roomOptional = hotelRoomRepository.findById(hotelRoomId);
@@ -56,6 +63,7 @@ public class HotelRoomService {
             existingRoom.setBathrooms(updatedRoom.getBathrooms());
             existingRoom.setSecurityDepositAmount(updatedRoom.getSecurityDepositAmount());
             existingRoom.setRoomType(updatedRoom.getRoomType());
+            existingRoom.setRoomDescription((updatedRoom.getRoom_description()));
 
             return hotelRoomRepository.save(existingRoom);
         } else {
@@ -66,6 +74,7 @@ public class HotelRoomService {
     }
 
     //deletes an existing instance of a hotel room by its hotelRoomId
+    @Transactional
     public void deleteHotelRoom(long hotelRoomId) {
         //uses the hotelRoomRepo to find the hotel room by its unique ID.
         Optional<HotelRoom> roomOptional = hotelRoomRepository.findById(hotelRoomId);
@@ -78,5 +87,5 @@ public class HotelRoomService {
             throw new EntityNotFoundException("Hotel Room not found with ID: " + hotelRoomId);
         }
     }
-    
+
 }

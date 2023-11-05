@@ -16,16 +16,12 @@ public class Checkout {
     private Date checkInTime;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "check_out_time", nullable = false)
+    @Column(name = "check_out_time")
     private Date checkOutDate;
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "reservation_start_date", nullable = false)
-    private Date reservationStartDate;
-
-    @Temporal(TemporalType.DATE)
-    @Column(name = "reservation_end_date", nullable = false)
-    private Date reservationEndDate;
+    @ManyToOne
+    @JoinColumn(name = "reservation_id")
+    private Reservation reservationId;
 
     @Column(name = "customer_name", nullable = false, length = 50)
     private String customerName;
@@ -57,20 +53,12 @@ public class Checkout {
         this.checkOutDate = checkOutDate;
     }
 
-    public Date getReservationStartDate() {
-        return reservationStartDate;
+    public Reservation getReservationId() {
+        return reservationId;
     }
 
-    public void setReservationStartDate(Date reservationStartDate) {
-        this.reservationStartDate = reservationStartDate;
-    }
-
-    public Date getReservationEndDate() {
-        return reservationEndDate;
-    }
-
-    public void setReservationEndDate(Date reservationEndDate) {
-        this.reservationEndDate = reservationEndDate;
+    public void setReservationId(Reservation reservationId) {
+        this.reservationId = reservationId;
     }
 
     public String getCustomerName() {

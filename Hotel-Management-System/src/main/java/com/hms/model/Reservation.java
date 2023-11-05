@@ -11,10 +11,6 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long reservationId;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "check_in_time", nullable = false)
-    private Date checkInTime;
-
     @Column(name = "customer_name",length = 50, nullable = false)
     private String customerName;
 
@@ -44,14 +40,6 @@ public class Reservation {
 
     public void setReservationId(long reservationId) {
         this.reservationId = reservationId;
-    }
-
-    public Date getCheckInTime() {
-        return checkInTime;
-    }
-
-    public void setCheckInTime(Date checkInTime) {
-        this.checkInTime = checkInTime;
     }
 
     public String getCustomerName() {
