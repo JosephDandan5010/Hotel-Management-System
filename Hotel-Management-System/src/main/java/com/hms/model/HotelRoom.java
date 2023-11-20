@@ -1,6 +1,4 @@
 package com.hms.model;
-
-
 import jakarta.persistence.*;
 
 @Entity
@@ -23,13 +21,13 @@ public class HotelRoom {
     private int bathrooms;
 
     @Column(name = "security_deposit_amount", nullable = false)
-    private double securityDepositAmount;
+    private Double securityDepositAmount;
 
     @Column(name = "room_type", nullable = false, length = 30)
     private String roomType;
 
     @Column(name = "room_description", length = 150)
-    private String room_description;
+    private String roomDescription;
 
     public long getHotelRoomId() {
         return hotelRoomId;
@@ -71,11 +69,11 @@ public class HotelRoom {
         this.bathrooms = bathrooms;
     }
 
-    public double getSecurityDepositAmount() {
+    public Double getSecurityDepositAmount() {
         return securityDepositAmount;
     }
 
-    public void setSecurityDepositAmount(double securityDepositAmount) {
+    public void setSecurityDepositAmount(Double securityDepositAmount) {
         this.securityDepositAmount = securityDepositAmount;
     }
 
@@ -87,11 +85,11 @@ public class HotelRoom {
         this.roomType = roomType;
     }
 
-    public String getRoom_description() {
-        return room_description;
+    public String getRoomDescription() {
+        return roomDescription;
     }
 
     public void setRoomDescription(String room_description) {
-        this.room_description = room_description;
+        this.roomDescription = room_description;
     }
 }

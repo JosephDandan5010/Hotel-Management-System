@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel Room List</title>
+    <script src="/js/confirmRoomDelete.js" th:src="@{/js/confirmRoomDelete.js}"></script>
+</head>
+<body>
+<h1>Hotel Room List</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Room ID</th>
+        <th>Building</th>
+        <th>Room Number</th>
+        <th>Room Type</th>
+        <th>Actions</th> <!-- Add a new column for actions -->
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="hotelRoom : ${hotelRooms}">
+        <td th:text="${hotelRoom.hotelRoomId}"></td>
+        <td th:text="${hotelRoom.building}"></td>
+        <td th:text="${hotelRoom.roomNumber}"></td>
+        <td th:text="${hotelRoom.roomType}"></td>
+        <td>
+            <!-- Add a link to view details for each hotel room -->
+            <a th:href="@{'/hotel-rooms/details/' + ${hotelRoom.hotelRoomId}}" class="btn btn-info">View Details</a>
+
+            <!-- Add an "Update" button that triggers the update action -->
+            <a th:href="@{'/hotel-rooms/update/' + ${hotelRoom.hotelRoomId}}" class="btn btn-primary">Update</a>
+            <!-- Delete Form -->
+            <form id="deleteForm" th:id="'deleteForm-' + ${hotelRoom.hotelRoomId}" method="post"
+                  th:action="@{'/hotel-rooms/delete/' + ${hotelRoom.hotelRoomId}}" onsubmit="return false;">
+                <input type="hidden" name="_method" value="delete" />
+                <input type="hidden" name="id" th:value="${hotelRoom.hotelRoomId}" />
+                <input type="button" value="Delete" th:attr="onclick='confirmRoomDelete(\'' + ${hotelRoom.hotelRoomId} + '\')'" />
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
+
+

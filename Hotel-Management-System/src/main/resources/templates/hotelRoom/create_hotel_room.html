@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Hotel Room</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<h1>Create Hotel Room</h1>
+
+<form th:object="${hotelRoomForm}" action="/hotel-rooms/create" method="POST">
+    <!-- Input fields for creating a new hotel room -->
+    <label for="building">Building:</label>
+    <input type="text" id="building" name="building" th:field="*{building}" required><br>
+    <span class="error" th:if="${#fields.hasErrors('building')}" th:errors="*{building}"></span><br>
+
+    <label for="roomNumber">Room Number:</label>
+    <input type="text" id="roomNumber" name="roomNumber" th:field="*{roomNumber}" required><br>
+    <span class="error" th:if="${#fields.hasErrors('roomNumber')}" th:errors="*{roomNumber}"></span><br>
+
+    <label for="bedCount">Bed Count:</label>
+    <input type="number" id="bedCount" name="bedCount" th:field="*{bedCount}" required><br>
+    <span class="error" th:if="${#fields.hasErrors('bedCount')}" th:errors="*{bedCount}"></span><br>
+
+    <label for="bathrooms">Bathrooms:</label>
+    <input type="number" id="bathrooms" name="bathrooms" th:field="*{bathrooms}" required><br>
+    <span class="error" th:if="${#fields.hasErrors('bathrooms')}" th:errors="*{bathrooms}"></span><br>
+
+    <label for="securityDepositAmount">Security Deposit Amount:</label>
+    <input type="number" step="0.01" id="securityDepositAmount" name="securityDepositAmount" th:field="*{securityDepositAmount}" required><br>
+    <span class="error" th:if="${#fields.hasErrors('securityDepositAmount')}" th:errors="*{securityDepositAmount}"></span><br>
+
+    <label for="roomType">Room Type:</label>
+    <input type="text" id="roomType" name="roomType" th:field="*{roomType}" required><br>
+    <span class="error" th:if="${#fields.hasErrors('roomType')}" th:errors="*{roomType}"></span><br>
+
+    <label for="roomDescription">Room Description:</label>
+    <input type="text" id="roomDescription" name="roomDescription" th:field="*{roomDescription}"><br>
+    <span class="error" th:if="${#fields.hasErrors('roomDescription')}" th:errors="*{roomDescription}"></span><br>
+
+    <!-- Submit button to create the hotel room -->
+    <button type="submit">Create Hotel Room</button>
+    <a th:href="@{/hotel-rooms/list}"><button type="button">Back to List</button></a>
+</form>
+</body>
+</html>

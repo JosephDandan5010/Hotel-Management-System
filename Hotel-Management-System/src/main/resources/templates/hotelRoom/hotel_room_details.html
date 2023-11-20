@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel Room Details</title>
+</head>
+<body>
+<h1>Hotel Room Details</h1>
+
+<dl>
+    <dt>Room ID:</dt>
+    <dd th:text="${hotelRoom.hotelRoomId}"></dd>
+
+    <dt>Building:</dt>
+    <dd th:text="${hotelRoom.building}"></dd>
+
+    <dt>Room Number:</dt>
+    <dd th:text="${hotelRoom.roomNumber}"></dd>
+
+    <dt>Bed Count:</dt>
+    <dd th:text="${hotelRoom.bedCount}"></dd>
+
+    <dt>Bathrooms:</dt>
+    <dd th:text="${hotelRoom.bathrooms}"></dd>
+
+    <dt>Security Deposit Amount:</dt>
+    <dd th:text="${hotelRoom.securityDepositAmount}"></dd>
+
+    <dt>Room Type:</dt>
+    <dd th:text="${hotelRoom.roomType}"></dd>
+
+    <dt>Room Description:</dt>
+    <dd th:text="${hotelRoom.roomDescription}"></dd>
+
+</dl>
+
+<!-- Add a button to navigate back to the list view -->
+<a th:href="@{/hotel-rooms/list}"><button type="button">Back to List</button></a>
+</body>
+</html>
