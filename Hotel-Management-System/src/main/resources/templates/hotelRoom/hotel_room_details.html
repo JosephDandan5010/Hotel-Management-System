@@ -3,38 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>Hotel Room Details</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-<body>
-<h1>Hotel Room Details</h1>
+<body class="container mt-4">
+<h1 class="mb-4">Hotel Room Details</h1>
 
-<dl>
-    <dt>Room ID:</dt>
-    <dd th:text="${hotelRoom.hotelRoomId}"></dd>
+<dl class="row">
+    <dt class="col-sm-3">Room ID:</dt>
+    <dd class="col-sm-9" th:text="${hotelRoom.hotelRoomId}"></dd>
 
-    <dt>Building:</dt>
-    <dd th:text="${hotelRoom.building}"></dd>
+    <dt class="col-sm-3">Building:</dt>
+    <dd class="col-sm-9" th:text="${hotelRoom.building}"></dd>
 
-    <dt>Room Number:</dt>
-    <dd th:text="${hotelRoom.roomNumber}"></dd>
+    <dt class="col-sm-3">Room Number:</dt>
+    <dd class="col-sm-9" th:text="${hotelRoom.roomNumber}"></dd>
 
-    <dt>Bed Count:</dt>
-    <dd th:text="${hotelRoom.bedCount}"></dd>
+    <dt class="col-sm-3">Bed Count:</dt>
+    <dd class="col-sm-9" th:text="${hotelRoom.bedCount}"></dd>
 
-    <dt>Bathrooms:</dt>
-    <dd th:text="${hotelRoom.bathrooms}"></dd>
+    <dt class="col-sm-3">Bathrooms:</dt>
+    <dd class="col-sm-9" th:text="${hotelRoom.bathrooms}"></dd>
 
-    <dt>Security Deposit Amount:</dt>
-    <dd th:text="${hotelRoom.securityDepositAmount}"></dd>
+    <dt class="col-sm-3">Security Deposit Amount:</dt>
+    <dd class="col-sm-9" th:text="${hotelRoom.securityDepositAmount}"></dd>
 
-    <dt>Room Type:</dt>
-    <dd th:text="${hotelRoom.roomType}"></dd>
+    <dt class="col-sm-3">Room Type:</dt>
+    <dd class="col-sm-9" th:text="${hotelRoom.roomType}"></dd>
 
-    <dt>Room Description:</dt>
-    <dd th:text="${hotelRoom.roomDescription}"></dd>
-
+    <dt class="col-sm-3">Room Description:</dt>
+    <dd class="col-sm-9" th:text="${hotelRoom.roomDescription}"></dd>
 </dl>
 
 <!-- Add a button to navigate back to the list view -->
-<a th:href="@{/hotel-rooms/list}"><button type="button">Back to List</button></a>
+<a th:href="@{/hotel-rooms/list}" class="btn btn-secondary">Back to List</a>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+

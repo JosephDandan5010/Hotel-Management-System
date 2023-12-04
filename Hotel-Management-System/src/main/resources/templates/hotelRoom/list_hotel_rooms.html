@@ -1,49 +1,57 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Hotel Room List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
     <script src="/js/confirmRoomDelete.js" th:src="@{/js/confirmRoomDelete.js}"></script>
 </head>
 <body>
-<h1>Hotel Room List</h1>
+<div class="container text-center mt-4">
+    <h1 class="mt-4 mb-4">Hotel Room List</h1>
 
-<table>
-    <thead>
-    <tr>
-        <th>Room ID</th>
-        <th>Building</th>
-        <th>Room Number</th>
-        <th>Room Type</th>
-        <th>Actions</th> <!-- Add a new column for actions -->
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="hotelRoom : ${hotelRooms}">
-        <td th:text="${hotelRoom.hotelRoomId}"></td>
-        <td th:text="${hotelRoom.building}"></td>
-        <td th:text="${hotelRoom.roomNumber}"></td>
-        <td th:text="${hotelRoom.roomType}"></td>
-        <td>
-            <!-- Add a link to view details for each hotel room -->
-            <a th:href="@{'/hotel-rooms/details/' + ${hotelRoom.hotelRoomId}}" class="btn btn-info">View Details</a>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Room ID</th>
+            <th scope="col">Building</th>
+            <th scope="col">Room Number</th>
+            <th scope="col">Room Type</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="hotelRoom : ${hotelRooms}">
+            <td th:text="${hotelRoom.hotelRoomId}"></td>
+            <td th:text="${hotelRoom.building}"></td>
+            <td th:text="${hotelRoom.roomNumber}"></td>
+            <td th:text="${hotelRoom.roomType}"></td>
+            <td>
+                <a th:href="@{'/hotel-rooms/details/' + ${hotelRoom.hotelRoomId}}" class="btn btn-info btn-sm">View Details</a>
+                <a th:href="@{'/hotel-rooms/update/' + ${hotelRoom.hotelRoomId}}" class="btn btn-primary btn-sm">Update</a>
 
-            <!-- Add an "Update" button that triggers the update action -->
-            <a th:href="@{'/hotel-rooms/update/' + ${hotelRoom.hotelRoomId}}" class="btn btn-primary">Update</a>
-            <!-- Delete Form -->
-            <form id="deleteForm" th:id="'deleteForm-' + ${hotelRoom.hotelRoomId}" method="post"
-                  th:action="@{'/hotel-rooms/delete/' + ${hotelRoom.hotelRoomId}}" onsubmit="return false;">
-                <input type="hidden" name="_method" value="delete" />
-                <input type="hidden" name="id" th:value="${hotelRoom.hotelRoomId}" />
-                <input type="button" value="Delete" th:attr="onclick='confirmRoomDelete(\'' + ${hotelRoom.hotelRoomId} + '\')'" />
-            </form>
-        </td>
-    </tr>
-    </tbody>
-</table>
+                <form id="deleteForm" th:id="'deleteForm-' + ${hotelRoom.hotelRoomId}" method="post"
+                      th:action="@{'/hotel-rooms/delete/' + ${hotelRoom.hotelRoomId}}" onsubmit="return false;">
+                    <input type="hidden" name="_method" value="delete" />
+                    <input type="hidden" name="id" th:value="${hotelRoom.hotelRoomId}" />
+                    <button type="button" class="btn btn-danger btn-sm mt-2" th:attr="onclick='confirmRoomDelete(\'' + ${hotelRoom.hotelRoomId} + '\')'">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+        <!-- Bootstrap JS (optional, depending on your needs) -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-gcfvcV5XlbI4JpZPI7cCVtNLIvPcdpEReqGGhOdGAg2Q2qDhAKMzBnDv4s+8MtW"
+        crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 </html>
-
-
