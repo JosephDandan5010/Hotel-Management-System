@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
@@ -92,19 +93,54 @@ public class HotelRoomController {
         //adds the hotel room to the model
         model.addAttribute("hotelRoom", hotelRoom);
 
+        //adds an empty HotelRoomForm to the model (for the form submission)
+        model.addAttribute("hotelRoomForm", convertToHotelRoomForm(hotelRoom));
+
         //returns the HTML template for updating the hotel room
         return "hotelRoom/update_hotel_room";
     }
 
     //method to handle the submission of the updated hotel room
     @PostMapping("/update/{id}")
-    public String updateHotelRoom(@PathVariable Long id, @ModelAttribute HotelRoom hotelRoom) {
+    public String updateHotelRoom(@PathVariable Long id, @ModelAttribute("hotelRoomForm") HotelRoomForm hotelRoomForm, BindingResult result, Model model) {
 
-        //calls a service method to update the hotel room
-        hotelRoomService.updateHotelRoom(id, hotelRoom);
+        // Validate the HotelRoomForm using your custom validator
+        hotelRoomServiceValidator.validate(hotelRoomForm, result);
+
+        if (result.hasErrors()) {
+            // If there are validation errors, return to the update form with error messages
+            model.addAttribute("hotelRoom", hotelRoomService.getHotelRoomById(id));
+            return "hotelRoom/update_hotel_room";
+        }
+
+        hotelRoomService.updateHotelRoom(id, convertToHotelRoom(hotelRoomForm));
 
         //redirects to the list of hotel rooms after updating
         return "redirect:/hotel-rooms/list";
+    }
+
+    private HotelRoom convertToHotelRoom(HotelRoomForm hotelRoomForm) {
+        HotelRoom hotelRoom = new HotelRoom();
+        hotelRoom.setBuilding(hotelRoomForm.getBuilding());
+        hotelRoom.setRoomNumber(hotelRoomForm.getRoomNumber());
+        hotelRoom.setBedCount(hotelRoomForm.getBedCount());
+        hotelRoom.setBathrooms(hotelRoomForm.getBathrooms());
+        hotelRoom.setSecurityDepositAmount(hotelRoomForm.getSecurityDepositAmount());
+        hotelRoom.setRoomType(hotelRoomForm.getRoomType());
+        hotelRoom.setRoomDescription(hotelRoomForm.getRoomDescription());
+        return hotelRoom;
+    }
+
+    private HotelRoomForm convertToHotelRoomForm(HotelRoom hotelRoom) {
+        HotelRoomForm hotelRoomForm = new HotelRoomForm();
+        hotelRoomForm.setBuilding(hotelRoom.getBuilding());
+        hotelRoomForm.setRoomNumber(hotelRoom.getRoomNumber());
+        hotelRoomForm.setBedCount(hotelRoom.getBedCount());
+        hotelRoomForm.setBathrooms(hotelRoom.getBathrooms());
+        hotelRoomForm.setSecurityDepositAmount(hotelRoom.getSecurityDepositAmount());
+        hotelRoomForm.setRoomType(hotelRoom.getRoomType());
+        hotelRoomForm.setRoomDescription(hotelRoom.getRoomDescription());
+        return hotelRoomForm;
     }
 
     @PostMapping("/delete/{id}")

@@ -133,32 +133,3 @@ public class HotelRoomServiceValidator implements Validator {
 //        }
 //    }
 }
-
-
-
-
-
-
-//    @Transactional
-//    public HotelRoom createHotelRoom(HotelRoom hotelRoom) {
-//        // Validate input fields before creating the hotel room
-//        HotelRoomValidator.validateRoomNumber(hotelRoom.getRoomNumber());
-//        HotelRoomValidator.validateBuilding(hotelRoom.getBuilding());
-//
-//        // Your existing logic to create a hotel room
-//        // ...
-//
-//        return hotelRoomRepository.save(hotelRoom);
-//    }
-//
-//    @Transactional
-//    public HotelRoom updateHotelRoom(long hotelRoomId, HotelRoom updatedRoom) {
-//        // Validate input fields before updating the hotel room
-//        HotelRoomValidator.validateRoomNumber(updatedRoom.getRoomNumber());
-//        HotelRoomValidator.validateBuilding(updatedRoom.getBuilding());
-//
-//        // Your existing logic to update a hotel room
-//        // ...
-//
-//        return hotelRoomRepository.save(existingRoom);
-//    }

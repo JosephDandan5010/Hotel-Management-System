@@ -22,7 +22,6 @@ public class HotelRoomService {
     }
 
     public List<HotelRoom> getAllHotelRooms() {
-
         List<HotelRoom> hotelRoomList = new ArrayList<>();
         hotelRoomRepository.findAll().forEach(hotelRoom -> hotelRoomList.add(hotelRoom));
         return hotelRoomRepository.findAll();
